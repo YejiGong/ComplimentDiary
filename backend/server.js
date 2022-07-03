@@ -1,5 +1,11 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/test');
+mongoose.connect("mongodb+srv://yejigong:<password>@cluster0.r31i4bi.mongodb.net/?retryWrites=true&w=majority",{
+//useNewUrlParser:true,
+//useUnifiedTopology:true,
+//useCreateIndex:true,
+//useFindAnyModify: false,
+//dbName: "compliment"
+}).then(()=>console.log('mongoDB conn')).catch((err) => console.error(err));
 var db = mongoose.connection;
 
 db.on('error', function(){
@@ -7,7 +13,7 @@ db.on('error', function(){
 });
 
 db.once('open', function(){
-    console.log('connectied');
+    console.log('connected');
 });
 
 var user = mongoose.Schema({
