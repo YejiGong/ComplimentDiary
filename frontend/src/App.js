@@ -1,6 +1,16 @@
 import './App.css';
-
+import axios from "axios";
+import {useEffect} from "react";
 function App() {
+  
+  const sendRequest = async() => {
+    axios.get("/api").then((res)=>{console.log(res.data.test)});
+  };
+
+  useEffect(()=>{
+    sendRequest();
+  }, []);
+  
   return (
     <div class="container">
       <div class="main">
@@ -20,7 +30,6 @@ function App() {
       </div>
       
     </div>
-
   );
 }
 
