@@ -1,0 +1,93 @@
+@import url(//font.elice.io/EliceDigitalBaeum.css);
+
+#login{
+  margin-top:1rem;
+  margin-left:5rem;
+  margin-right:1rem;
+  border:none;
+  border-bottom:solid 1px #19a82e;
+}
+
+#button{
+  height:80%;
+  margin-top:1rem;
+  color:#19a82e;
+  border:none;
+  border-radius: 2px;
+  background-color: white;
+}
+
+#button:focus{
+  color:green;
+}
+
+.join{
+  grid-row:2;
+  grid-column:1;
+  text-align:right;
+  margin-top:1rem;
+  margin-right:1rem;
+}
+
+#join{
+  color:#19a82e;
+  border:none;
+  margin-right:1rem;
+}
+#join:focus{
+  color:green;
+}
+
+#find{
+  color:#19a82e;
+  border:none;
+}
+
+#find:focus{
+  color:green;
+}
+
+.main {
+  font-size:xx-large;
+  font-family:"Elice Digital Baeum", sans-serif;
+  grid-column:2;
+  grid-row:3;
+  place-items: center;
+}
+
+.login{
+  grid-column:2;
+  grid-row:4;
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows:1fr 1fr;
+}
+.input{
+  grid-column:1;
+  grid-row:1;
+}
+.button{
+  grid-column:2;
+  grid-row:1;
+}
+.logo{
+  position: relative;
+}
+.content{
+  color:black;
+  top: 46%;
+  text-align:center;
+  padding-left:11rem;
+  position: absolute;
+}
+
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  justify-content: center;
+  align-items:center;
+  grid-auto-flow: row;
+}
