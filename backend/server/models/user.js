@@ -5,13 +5,15 @@ var {JsonWebTokenError} = require('jsonwebtoken')
 var userSchema = mongoose.Schema({
     name: 'string',
     id: 'string',
-    password: 'string',
+    password: {
+        type:'string',
+        minlength: 5
+    },
     email: 'string',
     token:'string',
     tokenExp:'Number'
 });
 
-const User = mongoose.model('User', userSchema);
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
@@ -23,6 +25,7 @@ userSchema.pre('save', function(next) {
             bcrypt.hash(user.password, salt, function(err, hash) {
                 if(err) return next(err)
                 user.password = hash
+                console.log(user.password)
                 next()
             })
         })
@@ -32,6 +35,7 @@ userSchema.pre('save', function(next) {
 })
 
 userSchema.methods.comparePassword = function(plainPassword, cb){
+    
     bcrypt.compare(plainPassword, this.password, function(err, isMatch) {
         if(err) return cb(err)
         cb(null, isMatch)
@@ -59,4 +63,6 @@ userSchema.statics.findByToken = function(token, cb){
         })
     })
 }
-module.exports = User;
+
+const User = mongoose.model('User', userSchema);
+module.exports = {User};

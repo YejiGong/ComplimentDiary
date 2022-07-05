@@ -2,8 +2,23 @@ import './Main.css';
 import {useState} from "react";
 import {useDispatch} from "react-redux";
 import {loginUser} from "./../_actions/user_action";
+import Join from "./Join.js";
+import {useNavigate} from 'react-router-dom';
 
 function Main(props) {
+  //for join, find pw modal
+  const navigate=useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () =>{
+      setIsModalOpen(true);
+  };
+
+  const closeModal = () =>{
+    setIsModalOpen(false);
+  }
+
+  //for login
   const [Id, setId] = useState("")
   const [Pw, setPw] = useState("")
   const dispatch = useDispatch()
@@ -21,13 +36,13 @@ function Main(props) {
 
     let body={
       id: Id,
-      pw: Pw
+      password: Pw
     }
 
     dispatch(loginUser(body))
     .then(response =>{
       if(response.payload.loginSuccess){
-        props.history.push('/menu')
+        navigate('/menu')
       } else{
         alert('Login Failed')
       }
@@ -35,25 +50,30 @@ function Main(props) {
   }
 
   return (
-    <div class="container">
-      <div class="main">
-      <div class="content">칭찬<br></br>일기</div>
-        <div class="logo">
+    <div className="container">
+      <div className="main">
+      <div className="content">칭찬<br></br>일기</div>
+        <div className="logo">
           <img src={require("./../images/leaf.png")}/>
         </div>
       </div>
-      <div class="login">
-          <div class="input">
+      <div className="login">
+          <div className="input">
           <input type="id" id="login" value={Id} onChange={onIdHandler}/><br></br>
           <input type="password" value={Pw} id="login" onChange={onPwHandler}/><br></br>
           </div>
         <form style={{display:'flex', flexDirection:'column'}} onSubmit={onSubmitHandler}>
-          <div class="button">
+          <div className="button">
             <input type="submit" id="button" value="LogIn"/>
           </div>
         </form>
-        <div class="join">
-          <input type="button" id="join" value="join"/>
+        <div className="join">
+          <input type="button" id="join" value="join" onClick={openModal}/>
+           {isModalOpen && (
+            <div className="modalWrapper" onClick={closeModal}>
+            <Join></Join>
+            </div>
+           )}
           <input type="button" id="find" value="pw"/>
         </div>
       </div>

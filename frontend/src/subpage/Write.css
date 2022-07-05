@@ -1,0 +1,21 @@
+.writer_container{
+    display: flex;
+
+}
+.writer_input{
+}
+.writer_submit{
+}
+#input_comp{
+    width: 50vw;
+    height: 30vh;
+    margin-top: -5rem;
+    margin-left: 2rem;
+}
+
+#submit_comp{
+    background-color:white;
+    width: 10vw;
+    border:none;
+
+}
