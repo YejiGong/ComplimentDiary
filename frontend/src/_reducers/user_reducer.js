@@ -1,6 +1,6 @@
-import {AUTH_USER, LOGIN_USER, REGISTER_USER, REGISTER_COMPLIMENT} from "../_actions/types"
+import {AUTH_USER, LOGIN_USER, REGISTER_USER, GET_LOGIN_INFO} from "./../_actions/types";
 
-export default function (state={}, action){
+export default function(state={}, action){
     switch (action.type) {
         case LOGIN_USER:
             return { ...state, loginSuccess: action.payload}
@@ -11,8 +11,8 @@ export default function (state={}, action){
         case AUTH_USER:
             return {...state, userData: action.payload}
             break;
-        case REGISTER_COMPLIMENT:
-            return {...state, complimentSuccess: action.payload}
+        case GET_LOGIN_INFO:
+            return {...state, userInfo: action.payload}
             break;
         default:
             return state;

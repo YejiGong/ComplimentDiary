@@ -1,0 +1,12 @@
+@import url(//font.elice.io/EliceDigitalBaeum.css);
+
+.userInfo{
+    font-family:"Elice Digital Baeum", sans-serif;
+    text-align:center;
+
+    width: 50vw;
+    border: 1px dotted;
+    border-radius: 2rem;
+    padding-top: 1rem;
+
+}

@@ -5,9 +5,9 @@ import {useDispatch} from "react-redux";
 import {registerCompliment} from "./../_actions/compliment_action";
 import tokenCookie from "./Cookie.js"
 import {useNavigate} from 'react-router-dom';
-import './Write.css';
+import './Plaza.css';
 
-function Write(){
+function Plaza(){
 
     const navigate = useNavigate();
     const [txt, setTxt] = useState("")
@@ -25,14 +25,14 @@ function Write(){
         let body = {
             token: Token,
             compliment: txt,
-            toOthers: false,
+            toOthers: true,
         }
 
         dispatch(registerCompliment(body))
         .then(response=>{
             console.log(response.payload)
             if(response.payload.registerSuccess){
-                navigate('/write')
+                navigate('/plaza')
             }else{
                 alert('join Failed')
             }
@@ -54,4 +54,4 @@ function Write(){
     );
 };
 
-export default Write;
+export default Plaza;

@@ -14,11 +14,11 @@ function Menu(props){
             <div className="menu">
                 <input type="submit" id="menu1" value="쓰기" onClick={()=>{navigate('/write')}}>
                 </input>
-                <input type="submit" id="menu2" value="기록">
+                <input type="submit" id="menu2" value="기록" onClick={()=>{navigate('/record')}}>
                 </input>
-                <input type="submit" id="menu3" value="광장">
+                <input type="submit" id="menu3" value="광장" onClick={()=>{navigate('/plaza')}}>
                 </input>
-                <input type="submit" id="menu4" value="설정">
+                <input type="submit" id="menu4" value="설정" onClick={()=>{navigate('/setting')}}>
                 </input>
             </div>
         </div>

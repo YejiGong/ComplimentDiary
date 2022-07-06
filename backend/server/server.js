@@ -31,20 +31,44 @@ app.listen(port, ()=> {
     console.log('server is running on port 5000');
 })
 
-const {Compliment} = require('./models/compliments');
-app.post('/api/users/write', (req,res) => {
-    console.log(req.body, res.body);
+const {Compliment} = require('./models/compliment');
+app.post('/api/compliment/write', (req,res) => {
     const compliment = new Compliment(req.body)
     compliment.save((err,compliments) => {
-        console.log(err);
         if(err) return res.json({success:fail, err})
         return res.status(200).json({
             success:true
         })
     })
 })
-app.post('/api/users/register', (req,res)=>{
 
+app.get('/api/users/info', (req, res) => {
+    const Token = req.headers.cookie.split("x_auth=").pop();
+    User.findOne({token:Token}, (err, user) => {
+        if(!err){
+            return res.status(200).json({
+                id:user.id,
+                email:user.email,
+                name:user.name,
+            })
+        }
+    })
+})
+
+app.get('/api/compliment/record', (req,res) =>{
+    const Token= req.headers.cookie.split("x_auth=").pop();
+    Compliment.find({$or:[{token:Token},{toOthers:true}]}, (err, compliments) =>{
+        var compliments_list=[]
+        if(!err){
+            compliments.forEach(function(row){
+                compliments_list.push(row.compliment)
+            })
+            return res.status(200).json({compliments_list})
+        }
+    })
+})
+
+app.post('/api/users/register', (req,res)=>{
     const user = new User(req.body)
     user.save((err,userInfo) => {
         if(err) return res.json({success:false, err})
@@ -57,6 +81,7 @@ app.post('/api/users/register', (req,res)=>{
 const cookieParser = require('cookie-parser');
 const { fail } = require('assert');
 app.use(cookieParser());
+
 app.post('/api/users/login', (req,res) =>{
     User.findOne({id:req.body.id}, (err, user) =>{
         if(!user) {
