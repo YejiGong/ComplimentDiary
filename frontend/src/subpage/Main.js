@@ -74,7 +74,6 @@ function Main(props) {
             <Join></Join>
             </div>
            )}
-          <input type="button" id="find" value="pw"/>
         </div>
       </div>
       

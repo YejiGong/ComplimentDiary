@@ -32,7 +32,6 @@ function Join(props){
     const dispatch = useDispatch()
     const onJoinHandler = (e) =>{
         e.preventDefault();
-
         let body = {
             id: Id,
             password: Pw,
@@ -42,8 +41,12 @@ function Join(props){
 
         dispatch(registerUser(body))
         .then(response=>{
-            console.log(response.payload)
-            if(response.payload.registerSuccess){
+            setID("")
+            setPW("")
+            setName("")
+            setEmail("")
+            if(response.payload.success){
+                alert('join success')
                 navigate('/')
             }else{
                 alert('join Failed')
@@ -52,26 +55,26 @@ function Join(props){
     }
 
     return(
-            <div className="modal" onClick={(e)=>e.stopPropagation()}>
+        <div className="modal" onClick={(e)=>e.stopPropagation()}>
                 <div className="modal-title"> Join Our Site</div>
                 <div className="form">
                     <label id="label" >Name</label>
-                    <input type="text" id="input_form" onClick={onNameHandler}></input>
+                    <input type="text" id="input_form" onChange={onNameHandler} value={Name}></input>
                     <br></br>
                     <label id="label" >ID</label>
-                    <input type="text" id="input_form" onClick={onIdHandler}></input>
+                    <input type="text" id="input_form" onChange={onIdHandler} value={Id}></input>
                     <br></br>
                     <label id="label" >PW</label>
-                    <input type="text" id="input_form" onClick={onPwHandler}></input>
+                    <input type="text" id="input_form" onChange={onPwHandler} value={Pw}></input>
                     <br></br>
                     <label id="label" >Email</label>
-                    <input type="text" id="input_form" onClick={onEmailHandler}></input>
+                    <input type="text" id="input_form" onChange={onEmailHandler} value={Email}></input>
                     <br></br>
-                    <form id="submit" style={{display:'flex', flexDirection:'column'}} onSubmit={onJoinHandler}>
-                        <input type="submit" id="submit_button" value="submit"></input>
-                    </form>
                 </div>
-            </div>
+            <form id="submit" style={{display:'flex', flexDirection:'column'}} onSubmit={onJoinHandler}>
+                <input type="submit" id="submit_button" value="submit"></input>
+            </form>
+        </div>
     );
 }
 

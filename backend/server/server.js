@@ -69,13 +69,23 @@ app.get('/api/compliment/record', (req,res) =>{
 })
 
 app.post('/api/users/register', (req,res)=>{
-    const user = new User(req.body)
-    user.save((err,userInfo) => {
-        if(err) return res.json({success:false, err})
-        return res.status(200).json({
-            success:true
-        })
+    User.findOne({id:req.body.id}, (err, user) => {
+        console.log(res)
+        if(user){
+            return res.status(200).json({
+                success:false
+            })
+        }else{
+            const user = new User(req.body)
+            user.save((err,userInfo) => {
+                if(err) return res.json({success:false, err})
+                return res.status(200).json({
+                    success:true
+                })
+            })
+        }
     })
+    
 })
 
 const cookieParser = require('cookie-parser');

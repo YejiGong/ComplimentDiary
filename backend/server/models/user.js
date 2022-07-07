@@ -3,13 +3,25 @@ var jwt = require('jsonwebtoken')
 var {JsonWebTokenError} = require('jsonwebtoken')
 
 var userSchema = mongoose.Schema({
-    name: 'string',
-    id: 'string',
+    name: {
+        type:'string',
+        required:true,
+    },
+    id: {
+        type: 'string',
+        unique: 1,
+        required:true,
+    },
     password: {
         type:'string',
-        minlength: 5
+        minlength: 5,
+        required:true,
     },
-    email: 'string',
+    email: {
+        type:'string',
+        required:true,
+        match:/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+    },
     token:'string',
     tokenExp:'Number'
 });

@@ -13,7 +13,6 @@ function Plaza(){
     const [txt, setTxt] = useState("")
     const onTxtHandler = (e) =>{
         setTxt(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     }
 
 
@@ -30,8 +29,8 @@ function Plaza(){
 
         dispatch(registerCompliment(body))
         .then(response=>{
-            console.log(response.payload)
-            if(response.payload.registerSuccess){
+            setTxt("")
+            if(response.payload.success){
                 navigate('/plaza')
             }else{
                 alert('join Failed')
@@ -43,7 +42,7 @@ function Plaza(){
         <Menu>
             <div className="writer_container">
             <div className="writer_input">
-            <textarea type="text" id="input_comp" onClick={onTxtHandler}></textarea>
+            <textarea type="text" id="input_comp" onChange={onTxtHandler} value={txt}>{txt}</textarea>
             </div>
             <div className="writer_submit">
             <form onClick={onTxtSubmitHandler}>
