@@ -23,7 +23,7 @@ function Record(){
     var result=useSelector(state=>state.compliment.complimentData);
     useEffect(()=>{
         dispatch(complimentGet());
-    },result);
+    },[]);
     return(
         <Menu>
             {output(result)}

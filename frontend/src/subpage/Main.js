@@ -1,7 +1,7 @@
 import './Main.css';
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {loginUser} from "./../_actions/user_action";
+import {auth, loginUser} from "./../_actions/user_action";
 import Join from "./Join.js";
 import {useNavigate} from 'react-router-dom';
 
@@ -42,7 +42,7 @@ function Main(props) {
     dispatch(loginUser(body))
     .then(response =>{
       if(response.payload.loginSuccess){
-        navigate('/menu')
+        navigate('/Write')
       } else{
         alert('Login Failed')
       }

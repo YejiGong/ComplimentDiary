@@ -5,9 +5,8 @@ function Menu(props){
     const navigate = useNavigate();
     return(
         <div className="containers">
-            <div className="title">
-                칭찬 일기
-            </div>
+            <input id="title" type="submit" value="칭찬 일기" onClick={()=>(navigate('/login'))}>
+            </input>
             <div className="content">
                 {props.children}
             </div>

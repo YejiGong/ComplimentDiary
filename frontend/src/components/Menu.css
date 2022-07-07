@@ -1,8 +1,10 @@
 @import url(//font.elice.io/EliceDigitalBaeum.css);
 
-.title{
+#title{
     grid-row:1;
     color: black;
+    background-color: white;
+    border: none;
     text-align:center;
     font-size:large;
     font-family:"Elice Digital Baeum", sans-serif;
