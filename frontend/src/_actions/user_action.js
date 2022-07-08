@@ -21,6 +21,7 @@ export function registerUser(dataToSubmit){
 }
 
 export function auth(){
+    console.log(axios.defaults.baseURL)
     const request = axios.get('/api/users/auth')
                         .then(response=>response.data);
         return{

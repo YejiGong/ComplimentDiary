@@ -1,0 +1,14 @@
+FROM node:alpine
+RUN apk add --no-cache --virtual .gyp python3 make g++
+
+COPY ./package.json ./
+
+
+RUN yarn global add nodemon \
+&& yarn install
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["yarn", "server"]

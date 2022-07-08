@@ -22,7 +22,7 @@ console.log(URL);
 mongoose.connect(URL,{})
         .then(()=> console.log('Successfully connected to DB'))
         .catch(e => console.error('error happend', e));
-
+console.log(__dirname)
 app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname,'../../frontend/build/index.html'));
 })
