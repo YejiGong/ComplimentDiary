@@ -7,7 +7,7 @@ function Menu(props){
         <div className="containers">
             <input id="title" type="submit" value="칭찬 일기" onClick={()=>(navigate('/login'))}>
             </input>
-            <div className="content">
+            <div className="contents">
                 {props.children}
             </div>
             <div className="menu">

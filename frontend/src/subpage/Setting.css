@@ -8,5 +8,7 @@
     border: 1px dotted;
     border-radius: 2rem;
     padding-top: 1rem;
+    display: grid;
+    margin:0 auto;
 
 }

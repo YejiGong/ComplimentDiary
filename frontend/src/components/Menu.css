@@ -9,8 +9,10 @@
     font-size:large;
     font-family:"Elice Digital Baeum", sans-serif;
 }
-.content{
+.contents{
     grid-row:2;
+    width:100vw;
+    height:8fr;
 }
 .menu{
     grid-row:3;

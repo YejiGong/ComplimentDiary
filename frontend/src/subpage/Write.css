@@ -1,12 +1,12 @@
 .writer_container{
     display: flex;
-
+    align-items: center;
+    justify-content: center;
 }
 #input_comp{
     width: 50vw;
     height: 30vh;
-    margin-top: -5rem;
-    margin-left: 2rem;
+    margin:0 auto;
 }
 
 #submit_comp{

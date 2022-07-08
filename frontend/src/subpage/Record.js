@@ -6,7 +6,11 @@ import './Record.css';
 
 function output(lists){
     if(lists!=null){
-        const comp_list=lists.compliments_list.map(item=>item).slice(-3);
+        let comp_list = lists.compliments_list
+        console.log(comp_list, comp_list.length)
+        if(comp_list.length>8){
+            comp_list=comp_list.map(item=>item).slice(-8);
+        }
         return(
                     comp_list.map(item => (
                         <div className="pages">
@@ -26,7 +30,9 @@ function Record(){
     },[]);
     return(
         <Menu>
+            <div className="wholePages">
             {output(result)}
+            </div>
         </Menu>
     );
 

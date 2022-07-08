@@ -15,7 +15,6 @@ export default function(SpecificComponent, option, adminRoute = null) {
             dispatch(auth()).then(response => {
                 console.log(response.payload.isAuth)
                 if(!response.payload.isAuth) {
-                    
                     if(option) {
                         navigate('/')
                     }
