@@ -17,6 +17,7 @@ function Setting(){
             })
             .then(response => {
                 if(response.data.success){
+                    window.localStorage.removeItem("authorization");
                     navigate('/')
                 }else{
                     alert('로그아웃에 실패했습니다.')
