@@ -1,6 +1,6 @@
 const {User} = require('../models/user');
 let auth = (req, res, next) => {
-    let token = req.headers.Authorization;
+    let token = req.headers.authorization;
 
     User.findByToken(token, (err, user) => {
         if(err) throw err;

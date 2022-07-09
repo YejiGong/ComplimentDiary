@@ -50,8 +50,10 @@ app.post('/api/compliment/write', (req,res) => {
 
 app.get('/api/users/info', (req, res) => {
     //const Token = req.headers.cookie.split("x_auth=").pop();
-    const Token = req.headers.Authorization;
-    User.findOne({token:Token}, (err, user) => {
+console.log(req.headers);
+	const Token = req.headers.authorization;
+console.log(Token);
+	User.findOne({token:Token}, (err, user) => {
         if(!err){
             return res.status(200).json({
                 id:user.id,
@@ -64,7 +66,7 @@ app.get('/api/users/info', (req, res) => {
 
 app.get('/api/compliment/record', (req,res) =>{
     //const Token= req.headers.cookie.split("x_auth=").pop();
-    const Token = req.headers.Authorization;
+    const Token = req.headers.authorization;
     Compliment.find({$or:[{token:Token},{toOthers:true}]}, (err, compliments) =>{
         var compliments_list=[]
         if(!err){
