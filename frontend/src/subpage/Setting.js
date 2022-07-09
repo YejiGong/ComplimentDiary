@@ -10,7 +10,11 @@ import { Navigate } from 'react-router';
 function Setting(){
     function output(lists){
         const logoutHandler = () =>{
-            api.get('/api/users/logout')
+            api.get('/api/users/logout', {
+                headers: {
+                    Authorization : window.localStorage.getItem('token')
+                }
+            })
             .then(response => {
                 if(response.data.success){
                     navigate('/')
