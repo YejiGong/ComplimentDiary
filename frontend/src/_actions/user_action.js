@@ -32,7 +32,7 @@ export function auth(){
 export function getLoginInfo(){
     const request = api.get('/api/users/info',  {
         headers: {
-            x_auth : window.localStorage.getItem('token')
+            Authorization : window.localStorage.getItem('token')
         }
     })
                         .then(response=>response.data)

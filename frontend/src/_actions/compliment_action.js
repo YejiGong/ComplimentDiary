@@ -14,7 +14,7 @@ export function registerCompliment(dataToSubmit){
 export function complimentGet(){
     const request = api.get('/api/compliment/record', {
         headers: {
-            x_auth : window.localStorage.getItem('token')
+            Authorization : window.localStorage.getItem('token')
         }
     })
                         .then(response=>response.data)
