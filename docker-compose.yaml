@@ -1,50 +1,26 @@
 version: "3"
 services:
-  nginx:
-    restart: always
-    container_name: nginx
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile.dev
+  web:
+    image: nginx:latest
+    container_name: web
+    restart: "on-failure"
     ports:
-      - "8080:8080"
-    networks:
-      - backend
-  client:               
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./frontend   
-    networks:
-      - backend   
-  server:                          
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./backend    
-    environment:
-      - NODE_PATH=src
-      - PORT=5000
-      - DB_HOST=mongo
-      - DB=test     
-    networks:
-      - backend  
-    depends_on:
-      - mongo
-    ports:
-      - "5000:5000"   
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports:
+      - "80:80"
     volumes:
-      - data:/data/db
-    ports:
-      - "27017:27017"
-    networks:
-      - backend
-
-networks:
-  backend:
-    driver: bridge
-volumes:
-  data:
-    driver: local
+      - ./nginx/default.conf:/etc/nginx/nginx.conf
+      - ./frontend/build:/usr/share/nginx/html
+  backend:                          
+    build:
+      context: ./backend 
+      dockerfile: Dockerfile.dev
+    container_name: backend   
+    expose:
+      - 5000
+    volumes:
+      - './backend:/app'
+      - '/app/node_modules'
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    stdin_open: true
+    tty: true
