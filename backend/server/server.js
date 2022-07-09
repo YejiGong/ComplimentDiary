@@ -49,7 +49,8 @@ app.post('/api/compliment/write', (req,res) => {
 })
 
 app.get('/api/users/info', (req, res) => {
-    const Token = req.headers.cookie.split("x_auth=").pop();
+    //const Token = req.headers.cookie.split("x_auth=").pop();
+    const Token = req.headers.token;
     User.findOne({token:Token}, (err, user) => {
         if(!err){
             return res.status(200).json({
@@ -62,7 +63,8 @@ app.get('/api/users/info', (req, res) => {
 })
 
 app.get('/api/compliment/record', (req,res) =>{
-    const Token= req.headers.cookie.split("x_auth=").pop();
+    //const Token= req.headers.cookie.split("x_auth=").pop();
+    const Token = req.headers.token;
     Compliment.find({$or:[{token:Token},{toOthers:true}]}, (err, compliments) =>{
         var compliments_list=[]
         if(!err){
@@ -120,7 +122,10 @@ app.post('/api/users/login', (req,res) =>{
                     return res.status(400).send(err);
                 }
 console.log(user.token);
-                res.cookie("x_auth", user.token)
+                res.cookie("x_auth", user.token, {
+		    httpOnly: true,
+		    secure: true
+		})
                 .status(200)
                 .json({loginSuccess:true, userId:user._id})
             })
