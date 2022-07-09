@@ -44,7 +44,7 @@ app.post('/api/compliment/write', (req,res) => {
 })
 
 app.get('/api/users/info', (req, res) => {
-    const Token = req.headers.x_auth;
+    const Token = req.headers.Authorization;
     User.findOne({token:Token}, (err, user) => {
         if(!err){
             return res.status(200).json({
@@ -57,7 +57,7 @@ app.get('/api/users/info', (req, res) => {
 })
 
 app.get('/api/compliment/record', (req,res) =>{
-    const Token= req.headers.x_auth;
+    const Token= req.headers.Authorization;
     Compliment.find({$or:[{token:Token},{toOthers:true}]}, (err, compliments) =>{
         var compliments_list=[]
         if(!err){

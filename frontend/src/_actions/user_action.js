@@ -21,7 +21,11 @@ export function registerUser(dataToSubmit){
 }
 
 export function auth(){
-    const request = api.get('/api/users/auth')
+    const request = api.get('/api/users/auth',  {
+        headers: {
+            Authorization : window.localStorage.getItem('token')
+        }
+    })
                         .then(response=>response.data);
         return{
             type:AUTH_USER,
