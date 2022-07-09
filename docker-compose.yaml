@@ -1,21 +1,22 @@
 version: "3"
 services:
-  web:
-    image: nginx:latest
-    container_name: web
-    restart: "on-failure"
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/nginx.conf
-      - ./frontend/build:/usr/share/nginx/html
+        #  web:
+        # image: nginx:latest
+        #container_name: web
+        #restart: "on-failure"
+        # ports:
+        # - "6800:80"
+        # volumes:
+        #- ./nginx/default.conf:/etc/nginx/nginx.conf
   backend:                          
     build:
       context: ./backend 
       dockerfile: Dockerfile.dev
-    container_name: backend   
+    container_name: backend
+    ports:
+      - "5005:5005"   
     expose:
-      - 5000
+      - 5005
     volumes:
       - './backend:/app'
       - '/app/node_modules'

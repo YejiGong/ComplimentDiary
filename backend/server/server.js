@@ -3,12 +3,17 @@ const path = require('path');
 const test=require('./router/test.js');
 const app = express();
 const server = require('http').createServer(app);
-const port = 5000;
+const port = 5005;
 const {auth} = require('./middleware/auth');
 const bodyparser = require('body-parser');
+const cors = require('cors');
+
+const corsOptions = {
+	origin: 'https://compliment-diary.vercel.app'
+}
 
 app.use(express.static(path.join(__dirname, '../../frontend/build')));
-
+app.use(cors(corsOptions));
 app.use(bodyparser.urlencoded({extends:true}));
 app.use(bodyparser.json());
 const mongoose=require('mongoose');
@@ -114,7 +119,7 @@ app.post('/api/users/login', (req,res) =>{
                 if(err){
                     return res.status(400).send(err);
                 }
-
+console.log(user.token);
                 res.cookie("x_auth", user.token)
                 .status(200)
                 .json({loginSuccess:true, userId:user._id})
