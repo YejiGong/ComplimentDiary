@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "http://15.164.166.89",
+    baseURL: "https://diary-api.haenu.xyz",
 })
 
 export default api;
