@@ -1,8 +1,8 @@
-import axios from 'axios';
+import api from './../Setting.js'
 import { LOGIN_USER, REGISTER_USER, AUTH_USER, GET_LOGIN_INFO} from './types';
 
 export function loginUser(dataToSubmit){
-    const request = axios.post('/api/users/login', dataToSubmit)
+    const request = api.post('/api/users/login', dataToSubmit)
                     .then(response => response.data);
 
         return{
@@ -12,7 +12,7 @@ export function loginUser(dataToSubmit){
 }
 
 export function registerUser(dataToSubmit){
-    const request = axios.post('/api/users/register', dataToSubmit)
+    const request = api.post('/api/users/register', dataToSubmit)
                         .then(response=>response.data);
         return{
             type:REGISTER_USER,
@@ -21,8 +21,7 @@ export function registerUser(dataToSubmit){
 }
 
 export function auth(){
-    console.log(axios.defaults.baseURL)
-    const request = axios.get('/api/users/auth')
+    const request = api.get('/api/users/auth')
                         .then(response=>response.data);
         return{
             type:AUTH_USER,
@@ -31,7 +30,7 @@ export function auth(){
 }
 
 export function getLoginInfo(){
-    const request = axios.get('/api/users/info')
+    const request = api.get('/api/users/info')
                         .then(response=>response.data)
         return{
             type:GET_LOGIN_INFO,
