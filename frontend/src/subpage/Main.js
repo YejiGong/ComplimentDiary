@@ -41,6 +41,7 @@ function Main(props) {
 
     dispatch(loginUser(body))
     .then(response =>{
+      window.localStorage.setItem('token',response.payload.token);
       if(response.payload.loginSuccess){
         navigate('/Write')
       } else{

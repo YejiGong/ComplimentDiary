@@ -30,7 +30,11 @@ export function auth(){
 }
 
 export function getLoginInfo(){
-    const request = api.get('/api/users/info')
+    const request = api.get('/api/users/info',  {
+        headers: {
+            x_auth : window.localStorage.getItem('token')
+        }
+    })
                         .then(response=>response.data)
         return{
             type:GET_LOGIN_INFO,
