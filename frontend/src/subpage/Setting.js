@@ -4,13 +4,13 @@ import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import './Setting.css';
 import { getLoginInfo } from '../_actions/user_action.js';
-import axios from 'axios';
+import api from './../Setting.js';
 import { Navigate } from 'react-router';
 
 function Setting(){
     function output(lists){
         const logoutHandler = () =>{
-            axios.get('/api/users/logout')
+            api.get('/api/users/logout')
             .then(response => {
                 if(response.data.success){
                     navigate('/')
