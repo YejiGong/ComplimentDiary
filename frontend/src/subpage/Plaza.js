@@ -5,7 +5,7 @@ import {useDispatch} from "react-redux";
 import {registerCompliment} from "./../_actions/compliment_action";
 import tokenCookie from "./Cookie.js"
 import {useNavigate} from 'react-router-dom';
-import './Plaza.css';
+import './Write.css';
 
 function Plaza(){
 
