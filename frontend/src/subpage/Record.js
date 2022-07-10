@@ -7,7 +7,6 @@ import './Record.css';
 function output(lists){
     if(lists!=null){
         let comp_list = lists.compliments_list
-        console.log(comp_list, comp_list.length)
         if(comp_list.length>8){
             comp_list=comp_list.map(item=>item).slice(-8);
         }

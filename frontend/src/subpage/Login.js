@@ -11,9 +11,8 @@ function Login(props) {
   return (
     <div className="container">
       <div className="main">
-      <div className="content">칭찬<br></br>일기</div>
         <div className="logo" style={{marginBottom:'3rem'}} >
-          <img src={require("./../images/leaf.png")}/>
+          <img src={require("./../images/leaf_logo.png")}/>
         </div>
       </div>
       <div className="login" style={{marginLeft:'8rem'}} >

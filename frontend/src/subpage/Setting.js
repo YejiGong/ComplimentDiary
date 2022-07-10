@@ -3,20 +3,17 @@ import Menu from './../components/Menu.js';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
 import './Setting.css';
-import { getLoginInfo } from '../_actions/user_action.js';
+import { getLoginInfo, logoutUser } from '../_actions/user_action.js';
 import api from './../Setting.js';
 import { Navigate } from 'react-router';
 
 function Setting(){
+    const dispatch = useDispatch();
     function output(lists){
         const logoutHandler = () =>{
-            api.get('/api/users/logout', {
-                headers: {
-                    Authorization : window.localStorage.getItem('token')
-                }
-            })
+            dispatch(logoutUser())
             .then(response => {
-                if(response.data.success){
+                if(response.payload.success){
                     window.localStorage.removeItem("authorization");
                     navigate('/')
                 }else{
@@ -41,7 +38,7 @@ function Setting(){
             <div></div>
         }
     }
-    const dispatch = useDispatch();
+    
     var result={}
     result=useSelector(state=>state.user.userInfo);
     useEffect(()=>{

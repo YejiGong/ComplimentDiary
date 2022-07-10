@@ -1,5 +1,5 @@
 import api from './../Setting.js'
-import { LOGIN_USER, REGISTER_USER, AUTH_USER, GET_LOGIN_INFO} from './types';
+import { LOGIN_USER, REGISTER_USER, AUTH_USER, GET_LOGIN_INFO, LOGOUT_USER} from './types';
 
 export function loginUser(dataToSubmit){
     const request = api.post('/api/users/login', dataToSubmit)
@@ -39,9 +39,22 @@ export function getLoginInfo(){
             Authorization : window.localStorage.getItem('token')
         }
     })
-                        .then(response=>response.data)
+    .then(response=>response.data)
         return{
             type:GET_LOGIN_INFO,
+            payload:request
+        }
+}
+
+export function logoutUser(){
+    const request = api.get('/api/users/logout', {
+        headers: {
+            Authorization : window.localStorage.getItem('token')
+        }
+    })
+    .then(response => response.data)
+        return{
+            type:LOGOUT_USER,
             payload:request
         }
 }

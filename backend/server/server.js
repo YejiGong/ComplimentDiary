@@ -1,13 +1,18 @@
 const express = require('express');
 const path = require('path');
-const test=require('./router/test.js');
 const app = express();
 const server = require('http').createServer(app);
 const port = 5000;
 const {auth} = require('./middleware/auth');
 const bodyparser = require('body-parser');
+const cors = require('cors');
+
+const corsOptions = {
+	origin: 'https://compliment-diary.vercel.app'
+}
 
 app.use(express.static(path.join(__dirname, '../../frontend/build')));
+app.use(cors(corsOptions));
 
 app.use(bodyparser.urlencoded({extends:true}));
 app.use(bodyparser.json());
@@ -18,16 +23,17 @@ const { allowedNodeEnvironmentFlags } = require('process');
 var options = require('./../option');
 var loginData = {user:options.storageConfig.user, password: options.storageConfig.password};
 var URL = "mongodb+srv://"+loginData.user+":"+loginData.password+"@cluster0.r31i4bi.mongodb.net/?retryWrites=true&w=majority";
-console.log(URL);
 mongoose.connect(URL,{})
         .then(()=> console.log('Successfully connected to DB'))
         .catch(e => console.error('error happend', e));
 
 app.get('/', function(req, res) {
     //res.sendFile(path.join(__dirname,'../../frontend/build/index.html'));
-    res.send({test:'hi'});
+    res.send({test:'index'});
 })
-app.use('/api', test);
+app.use('/api', function(req,res){
+    res.send({test:'api'});
+});
 app.listen(port, ()=> {
     console.log('server is running on port 5000');
 })
@@ -71,7 +77,6 @@ app.get('/api/compliment/record', (req,res) =>{
 
 app.post('/api/users/register', (req,res)=>{
     User.findOne({id:req.body.id}, (err, user) => {
-        console.log(res)
         if(user){
             return res.status(200).json({
                 success:false
@@ -125,7 +130,6 @@ app.post('/api/users/login', (req,res) =>{
 })
 
 app.get('/api/users/auth', auth, (req,res) => {
-    console.log(req, req)
     res.status(200).json({
         _id: req.user._id,
         isAdmin: req.user.role === 0? false: true,

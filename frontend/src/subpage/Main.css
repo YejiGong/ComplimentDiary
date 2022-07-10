@@ -73,14 +73,6 @@
 .logo{
   position: relative;
 }
-.content{
-  color:black;
-  top: 46%;
-  text-align:center;
-  padding-left:11rem;
-  position: absolute;
-}
-
 .container{
   width: 100vw;
   height: 100vh;

@@ -11,22 +11,18 @@ function Join(props){
     const [Id, setID] = useState("")
     const onIdHandler = (e) =>{
         setID(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     }
     const [Pw, setPW] = useState("")
     const onPwHandler = (e) =>{
         setPW(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     }
     const [Email, setEmail] = useState("")
     const onEmailHandler = (e) =>{
         setEmail(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     }
     const [Name, setName] = useState("")
     const onNameHandler = (e) =>{
         setName(e.currentTarget.value);
-        console.log(e.currentTarget.value);
     }
 
     const dispatch = useDispatch()
