@@ -13,19 +13,14 @@ export default function(SpecificComponent, option, adminRoute = null) {
         useEffect(() => {
             
             dispatch(auth()).then(response => {
-                console.log(response.payload.isAuth)
                 if(!response.payload.isAuth) {
                     if(option) {
                         navigate('/')
                     }
                 } else { 
-                    if (adminRoute && !response.payload.isAdmin) {
-                        navigate('/')
-                    } else {  
-                        if(option === false){
-                            navigate('/login')
-                        }
-                    }    
+                    if(option === false){
+                        navigate('/login')
+                    } 
                 }
             })
         }, [])

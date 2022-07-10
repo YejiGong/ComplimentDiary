@@ -14,7 +14,7 @@ function Setting(){
             dispatch(logoutUser())
             .then(response => {
                 if(response.payload.success){
-                    window.localStorage.removeItem("authorization");
+                    window.localStorage.removeItem('token');
                     navigate('/')
                 }else{
                     alert('로그아웃에 실패했습니다.')
