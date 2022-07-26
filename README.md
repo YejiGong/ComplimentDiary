@@ -47,3 +47,10 @@ back - AWS+nginx
 ---
 ## 회고
 https://velog.io/@ydppwljg/series/%EC%B9%AD%EC%B0%AC%EC%9D%BC%EA%B8%B0-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8
+
+---
+## 향후 추가 예정 기능
+- [ ] 랜덤 칭찬 (오늘의 칭찬) 띄우기
+- [ ] 답장 보내기
+- [ ] 칭찬 작성 시 금지어 설정
+- [ ] 내가 쓴 칭찬과 다른 사람이 보낸 칭찬 구분
